@@ -10,8 +10,12 @@ with there explanation and approaches. Adding problems as we learn through contr
 - Download Free [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/download/?section=windows/) or any other code editor supports kotlin compilation.
 
 ## Overview
+* ### [Time/Space Complexity](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/time_space_complexity)
+    - Time Complexity [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/blob/master/src/time_space_complexity/TIMECOMPLEXITY.md)
+    - Space Complexity [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/blob/master/src/time_space_complexity/SPACECOMPLEXITY.md)
 
->Dsa
+- ### [Data Structures](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures)
+    - Arrays [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures/array)
 
 
 
