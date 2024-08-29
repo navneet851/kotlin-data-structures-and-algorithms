@@ -3,15 +3,16 @@ package src.data_structures.linkedlist.singly_linked_list
 
 fun main(){
     val linkedList = LinkedList(-11)
-    linkedList.print()
     linkedList.append(5)
     linkedList.append(6)
     linkedList.append(7)
     linkedList.append(8)
     linkedList.prepend(1)
     linkedList.insert(2, -91)
+    linkedList.insert(0, -91)
+    linkedList.insert(7, -91)
     linkedList.print()
-    println(linkedList.asList())
+//    println(linkedList.asList())
 }
 
 
@@ -19,10 +20,10 @@ class LinkedList(value: Int) {
 
     private var head : Node? = Node(value)
     private var tail : Node? = head
-    private var length : Int = 1
+    var length : Int = 1
 
     fun print(){
-        if (head?.next == null){
+        if (head == null){
             println("empty list")
         }
         else{
@@ -71,23 +72,25 @@ class LinkedList(value: Int) {
 
     //to insert value at index
     fun insert(index : Int, value: Int){
-        if (index > length - 1 && index < 0){
-            print("enter valid index")
+        if (index > length - 1 || index < 0){
+            println("enter valid index")
         }
         else if (index == 0){
             prepend(value)
         }
-        else if (index == length-1){
+        else if (index == length - 1){
             append(value)
         }
         else{
+            println("jdsk")
             val newNode = Node(value)
             var current_node  = head
-            for (i in 0..< index){
+            for (i in 0..< index - 1){
                 current_node = current_node?.next
             }
-            newNode.next = current_node
+            newNode.next = current_node?.next
             current_node?.next = newNode
+            length++
         }
 
     }
