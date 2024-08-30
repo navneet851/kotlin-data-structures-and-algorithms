@@ -14,13 +14,16 @@ fun main(){
     linkedList.insert(6, -91)
     linkedList.print()
     println(linkedList.asList())
+    linkedList.delete()
+    linkedList.deleteFirst()
+    linkedList.print()
 
 
     println("\n \n \n -> 1 -> 2 -> 3 -> 4 -> 5 -> 6")
 }
 
 
-class LinkedList() {
+class LinkedList {
 
     private var head : Node? = null
     var length : Int = 0
@@ -114,6 +117,36 @@ class LinkedList() {
             current_node?.next = newNode
             length++
         }
+    }
+
+
+    // to delete last node
+    fun delete(){
+        if (head == null){
+            println("nothing to delete")
+        }
+        else{
+            var currentNode :Node? = head
+            while (currentNode?.next?.next != null){
+                currentNode = currentNode.next
+            }
+            currentNode?.next = null
+            length--
+        }
+    }
+
+    // to delete first node
+    fun deleteFirst(){
+        if (head == null){
+            println("nothing to delete")
+        }
+        else{
+            head = head?.next
+        }
+    }
+
+    //Deletion from particular index
+    fun deleteIndexItem(index: Int){
 
     }
 }
