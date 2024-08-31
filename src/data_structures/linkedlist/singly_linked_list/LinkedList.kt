@@ -1,5 +1,7 @@
 package src.data_structures.linkedlist.singly_linked_list
 
+import src.data_structures.linkedlist.Node
+
 
 fun main(){
     val linkedList = LinkedList()
@@ -132,7 +134,7 @@ class LinkedList {
             println("nothing to delete")
         }
         else{
-            var currentNode :Node? = head
+            var currentNode : Node? = head
             while (currentNode?.next?.next != null){
                 currentNode = currentNode.next
             }

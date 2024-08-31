@@ -1,6 +1,6 @@
 package src.data_structures.linkedlist.circular_linked_list
 
-import src.data_structures.linkedlist.singly_linked_list.Node
+import src.data_structures.linkedlist.Node
 
 
 fun main(){
@@ -9,9 +9,13 @@ fun main(){
     linkedList.append(6)
     linkedList.append(7)
     linkedList.append(8)
-    linkedList.insert(0, -44)
     linkedList.prepend(34)
     linkedList.prepend(3)
+    linkedList.insert(5, -44)
+    linkedList.print()
+    linkedList.delete()
+    linkedList.print()
+    linkedList.deleteFirst()
     linkedList.print()
     println(linkedList.asList())
 }
@@ -129,11 +133,11 @@ class CircularLinkedList {
             println("nothing to delete")
         }
         else{
-            var currentNode :Node? = head
-            while (currentNode?.next?.next != null){
-                currentNode = currentNode.next
+            var currentNode : Node? = head
+            while (currentNode?.next?.next != head){
+                currentNode = currentNode?.next
             }
-            currentNode?.next = null
+            currentNode?.next = head
             length--
         }
     }
@@ -144,7 +148,12 @@ class CircularLinkedList {
             println("nothing to delete")
         }
         else{
+            var currentNode: Node? = head
+            while (currentNode?.next != head) {
+                currentNode = currentNode?.next
+            }
             head = head?.next
+            currentNode?.next = head
             length--
         }
     }
