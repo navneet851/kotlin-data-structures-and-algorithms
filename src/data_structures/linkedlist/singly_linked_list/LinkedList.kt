@@ -9,17 +9,19 @@ fun main(){
     linkedList.prepend(3)
     linkedList.prepend(2)
     linkedList.prepend(1)
+    linkedList.print()
     linkedList.insert(0, -1)
     linkedList.insert(3, -19)
     linkedList.insert(6, -91)
     linkedList.print()
     println(linkedList.asList())
     linkedList.delete()
+    linkedList.print()
     linkedList.deleteFirst()
     linkedList.print()
+    linkedList.deleteIndexItem(4)
+    linkedList.print()
 
-
-    println("\n \n \n -> 1 -> 2 -> 3 -> 4 -> 5 -> 6")
 }
 
 
@@ -90,8 +92,13 @@ class LinkedList {
     //to prepend node at start
     fun prepend(value: Int){
         val newNode = Node(value)
-        newNode.next = head
-        head = newNode
+        if (head == null){
+            head = newNode
+        }
+        else{
+            newNode.next = head
+            head = newNode
+        }
         length++
     }
 
@@ -107,7 +114,6 @@ class LinkedList {
             append(value)
         }
         else{
-            println("         jdkwwfejkfewf-------------sk")
             val newNode = Node(value)
             var current_node  = head
             for (i in 0..< index - 1){
@@ -142,11 +148,31 @@ class LinkedList {
         }
         else{
             head = head?.next
+            length--
         }
     }
 
     //Deletion from particular index
     fun deleteIndexItem(index: Int){
 
+        if (index > length-1  || index < 0){
+            println("enter valid index")
+        }
+        else if (index == 0){
+            deleteFirst()
+        }
+        else if (index == length - 1){
+            delete()
+        }
+        else{
+            var currentNode = head
+            var i = 0
+            while(i < index - 1){
+                currentNode = currentNode?.next
+                i++
+            }
+            currentNode?.next = currentNode?.next?.next
+            length--
+        }
     }
 }

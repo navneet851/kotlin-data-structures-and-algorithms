@@ -9,8 +9,9 @@ fun main(){
     linkedList.append(6)
     linkedList.append(7)
     linkedList.append(8)
-    linkedList.insert(5, -44)
-    //linkedList.prepend(34)
+    linkedList.insert(0, -44)
+    linkedList.prepend(34)
+    linkedList.prepend(3)
     linkedList.print()
     println(linkedList.asList())
 }
@@ -83,13 +84,21 @@ class CircularLinkedList {
 
 
     //to prepend node at start
-    fun prepend(value: Int){
+    fun prepend(value: Int) {
         val newNode = Node(value)
-        newNode.next = head
-        head = newNode
+        if (head == null) {
+            head = newNode
+            newNode.next = head
+        } else {
+            var currentNode: Node? = head
+            while (currentNode?.next != head) {
+                currentNode = currentNode?.next
+            }
+            newNode.next = head
+            head = newNode
+            currentNode?.next = head
+        }
         length++
-
-        newNode.next = head
     }
 
     //to insert value at index
@@ -112,6 +121,55 @@ class CircularLinkedList {
             newNode.next = currentNode?.next
             currentNode?.next = newNode
             length++
+        }
+    }
+
+    fun delete(){
+        if (head == null){
+            println("nothing to delete")
+        }
+        else{
+            var currentNode :Node? = head
+            while (currentNode?.next?.next != null){
+                currentNode = currentNode.next
+            }
+            currentNode?.next = null
+            length--
+        }
+    }
+
+    // to delete first node
+    fun deleteFirst(){
+        if (head == null){
+            println("nothing to delete")
+        }
+        else{
+            head = head?.next
+            length--
+        }
+    }
+
+    //Deletion from particular index
+    fun deleteIndexItem(index: Int){
+
+        if (index > length-1  || index < 0){
+            println("enter valid index")
+        }
+        else if (index == 0){
+            deleteFirst()
+        }
+        else if (index == length - 1){
+            delete()
+        }
+        else{
+            var currentNode = head
+            var i = 0
+            while(i < index - 1){
+                currentNode = currentNode?.next
+                i++
+            }
+            currentNode?.next = currentNode?.next?.next
+            length--
         }
     }
 }
