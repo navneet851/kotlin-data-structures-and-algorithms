@@ -58,3 +58,7 @@ Some Common Algorithmic Runtimes. (from fastest to slowest)
 * **O(n2)	Quadratic Time Complexity	Example: Finding the sum of every pair of elements in an array.**
 * **O(2n)	Exponential Time Complexity	Example: Finding all the subsets.**
 * **O(n!)	Factorial Time Complexity	Example: Finding all the permutations of a given array.**
+
+***
+
+>Reference: interview bit

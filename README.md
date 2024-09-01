@@ -16,6 +16,7 @@ with there explanation and approaches. Adding problems as we learn through contr
 
 - ### [Data Structures](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures)
     - Arrays [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures/array)
+    - LinkedList [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures/linkedlist)
 
 
 

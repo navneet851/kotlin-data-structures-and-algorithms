@@ -12,6 +12,16 @@ fun main(){
     dLinkedList.prepend(4)
     dLinkedList.print()
     dLinkedList.printReverse()
+    dLinkedList.deleteFirst()
+    dLinkedList.print()
+    dLinkedList.delete()
+    dLinkedList.print()
+    dLinkedList.deleteIndexItem(2)
+    dLinkedList.print()
+    dLinkedList.insert(2, -11)
+    dLinkedList.print()
+    dLinkedList.update(3, 33)
+    dLinkedList.print()
     println(dLinkedList.asList())
 }
 
@@ -20,7 +30,6 @@ fun main(){
 class DoublyLinkedList {
     private var head : Node? = null
     private var length : Int = 0
-
 
     fun append(value: Int){
         if (head == null){
@@ -51,10 +60,102 @@ class DoublyLinkedList {
         length++
     }
 
+    //to insert value at index
+    fun insert(index : Int, value: Int){
+        if (index > length  || index < 0){
+            println("    !!!!!!!!enter valid index!!!!!!!!")
+        }
+        else if (index == 0){
+            prepend(value)
+        }
+        else if (index == length){
+            append(value)
+        }
+        else{
+            val newNode = Node(value)
+            var current_node  = head
+            for (i in 0..< index - 1){
+                current_node = current_node?.next
+            }
+            newNode.next = current_node?.next
+            current_node?.next = newNode
+            length++
+        }
+    }
+
+    //to update particular index
+    fun update(index : Int, value: Int){
+        if (index > length - 1  || index < 0){
+            println("    !!!!!!!enter valid index!!!!!!!")
+        }
+        else if (index == 0){
+            head?.value = value
+        }
+        else{
+            var i = 0
+            var currentNode = head
+            while (i != index){
+                currentNode = currentNode?.next
+                i++
+            }
+            currentNode?.value = value
+        }
+    }
+
+    // to delete last node
+    fun delete(){
+        if (head == null){
+            println("   !!!!!!!!!!nothing to delete!!!!!!!!!")
+        }
+        else{
+            var currentNode : Node? = head
+            while (currentNode?.next?.next != null){
+                currentNode = currentNode.next
+            }
+            currentNode?.next = null
+            length--
+        }
+    }
+
+    // to delete first node
+    fun deleteFirst(){
+        if (head == null){
+            println("!!!!!!!!!nothing to delete!!!!!!!!!!!")
+        }
+        else{
+            head = head?.next
+            length--
+        }
+    }
+
+    //Deletion from particular index
+    fun deleteIndexItem(index: Int){
+
+        if (index > length-1  || index < 0){
+            println("!!!!!!!!!!!enter valid index!!!!!!!!!!!")
+        }
+        else if (index == 0){
+            deleteFirst()
+        }
+        else if (index == length - 1){
+            delete()
+        }
+        else{
+            var currentNode = head
+            var i = 0
+            while(i < index - 1){
+                currentNode = currentNode?.next
+                i++
+            }
+            currentNode?.next = currentNode?.next?.next
+            length--
+        }
+    }
+
     fun print(){
         println("length is $length")
         if (head == null){
-            println("empty list")
+            println("!!!!!!!!1empty list!!!!!!!!!!!!")
         }
         else{
             var currentNode = head
@@ -70,7 +171,7 @@ class DoublyLinkedList {
     fun printReverse(){
         println("length is $length")
         if (head == null){
-            println("empty list")
+            println("!!!!!!!!!empty list!!!!!!!!!!")
         }
         else{
             var currentNode = head
