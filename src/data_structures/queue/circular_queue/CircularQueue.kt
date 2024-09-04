@@ -80,6 +80,7 @@ class StaticCircularQueue(size : Int) {
             }
             print("<--| EnQueue(insert)")
             println()
+
         }
 
     }
