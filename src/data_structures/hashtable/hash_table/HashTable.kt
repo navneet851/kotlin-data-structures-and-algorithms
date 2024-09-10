@@ -7,11 +7,11 @@ fun main() {
     val hashTable = HashTable<String, Int>(5)
     hashTable.put("green", 5)
     hashTable.put("orange", 1)
-//    hashTable.put("orange", -1)
+    hashTable.put("orange", -1)
     hashTable.put("math", 9)
     hashTable.put("green", 5)
 
-    hashTable.search("aple")
+    hashTable.search("orange")
     hashTable.print()
 }
 
@@ -39,9 +39,11 @@ class HashTable<K, V>(private val size: Int) {
                 start = 0
                 end = index
             }
+
             while (start < end && hashTable[start] != null) {
                 start++
             }
+
             if (start == index){
                 println("table overflow")
             }
@@ -63,9 +65,9 @@ class HashTable<K, V>(private val size: Int) {
                 i++
             }
             if (i == hashTable.size) {
-                println("key is not present in table**")
+                println("key is not present in table **")
             } else {
-                println("value of key $key is ${hashTable[i]?.value}**")
+                println("value of key $key is ${hashTable[i]?.value} **")
             }
 
         }
