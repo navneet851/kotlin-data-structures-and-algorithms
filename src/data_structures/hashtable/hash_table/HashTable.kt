@@ -1,26 +1,43 @@
 package src.data_structures.hashtable.hash_table
 
 import kotlin.math.absoluteValue
+import kotlin.reflect.KClass
+import kotlin.reflect.KType
+import kotlin.reflect.typeOf
 
 
 fun main() {
     val hashTable = HashTable<String, Int>(5)
-//    hashTable.put("green", 5)
-    hashTable.put("orange", 1)
-//    hashTable.put("orange", 1)
-    hashTable.put("orangee", -1)
-    hashTable.put("green", 5)
-    hashTable.remove("orange")
+
+    //for generic type String
     hashTable.put("orange", -11)
-    hashTable.search("orange")
+    hashTable.put("green", 5)
+    hashTable.put("banana", 5)
+//    hashTable.remove("orange")
+    hashTable.remove("green")
+    hashTable.put("green", 0)
+    hashTable.put("bananaa", -22)
+    hashTable.search("bananaa")
+
+
+    //for generic type Integer
+//    val hashTable = HashTable<Int, Int>(5)
+//    hashTable.put(1011, -1)
+//    hashTable.put(2223, -1)
+//    hashTable.put(3332, -3)
+//    hashTable.remove(2223)
+//    hashTable.put(2226, -3)
+//    hashTable.search(2226)
+
+
+
+//    println(hashTable.removedKey(1))
 
     hashTable.print()
 }
 
 class HashTable<K, V>(private val size: Int) {
     private val hashTable: Array<KeyValue<K, V>?> = arrayOfNulls<KeyValue<K, V>>(size)
-    private val TOMBSTONE = KeyValue<K, V>(null as K, null as V) // Marker for deleted entries
-
 
     private fun hash(key: K): Int {
         print(key)
@@ -30,9 +47,24 @@ class HashTable<K, V>(private val size: Int) {
         return (key.hashCode() % hashTable.size).absoluteValue
     }
 
+    fun checkType(key : K): Any {
+        val type = (key!!::class).toString()
+        return type
+    }
+
+    fun removedKey(key: K): Any? {
+        val type = (key!!::class).toString()
+        return when (type){
+            "class java.lang.String (Kotlin reflection is not available)" -> "empty"
+            "class java.lang.Integer (Kotlin reflection is not available)" -> 0
+            else -> null
+        }
+    }
+
     fun put(key: K, value: V) {
+        print("put ")
         val index = hash(key)
-        if (hashTable[index] == null) {
+        if (hashTable[index] == null || hashTable[index]?.key == removedKey(key)) {
             hashTable[index] = KeyValue(key, value)
         } else {
             var start = index
@@ -42,7 +74,7 @@ class HashTable<K, V>(private val size: Int) {
                 end = index
             }
 
-            while (start < end && hashTable[start] != null && hashTable[start] != TOMBSTONE) {
+            while (start < end && (hashTable[start] != null && hashTable[start]?.key != removedKey(key))) {
                 start++
             }
 
@@ -62,7 +94,7 @@ class HashTable<K, V>(private val size: Int) {
             println("value of key $key is ${hashTable[index]?.value}")
         } else {
             var i = index
-            while (i < hashTable.size && (hashTable[i]?.key != key && hashTable[i] != TOMBSTONE)) {
+            while (i < hashTable.size && hashTable[i]?.key != key ) {
                 i++
             }
             if (i == hashTable.size) {
@@ -75,11 +107,12 @@ class HashTable<K, V>(private val size: Int) {
     }
 
     fun remove(key: K) {
+        print("remove ")
         val index = hash(key)
         if (hashTable[index] == null) {
             println("key is not present in table")
         } else if (hashTable[index]?.key == key) {
-            hashTable[index] = TOMBSTONE
+            hashTable[index] = KeyValue(removedKey(key) as K, null as V)
             println("key $key is removed")
         } else {
             var start = index
@@ -96,7 +129,7 @@ class HashTable<K, V>(private val size: Int) {
             if (start == index) {
                 println("table overflow")
             } else {
-                hashTable[start] = TOMBSTONE
+                hashTable[start] = null
                 println("key $key is removed")
             }
         }
