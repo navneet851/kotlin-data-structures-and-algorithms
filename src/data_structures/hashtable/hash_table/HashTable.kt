@@ -1,19 +1,15 @@
 package src.data_structures.hashtable.hash_table
 
 import kotlin.math.absoluteValue
-import kotlin.reflect.KClass
-import kotlin.reflect.KType
-import kotlin.reflect.typeOf
 
 
 fun main() {
-    val hashTable = HashTable<String, Int>(5)
-
     //for generic type String
+
+    val hashTable = HashTable<String, Int>(5)
     hashTable.put("orange", -11)
     hashTable.put("green", 5)
     hashTable.put("banana", 5)
-//    hashTable.remove("orange")
     hashTable.remove("green")
     hashTable.put("green", 0)
     hashTable.put("bananaa", -22)
@@ -21,6 +17,7 @@ fun main() {
 
 
     //for generic type Integer
+
 //    val hashTable = HashTable<Int, Int>(5)
 //    hashTable.put(1011, -1)
 //    hashTable.put(2223, -1)
@@ -31,14 +28,14 @@ fun main() {
 
 
 
-//    println(hashTable.removedKey(1))
-
     hashTable.print()
 }
 
 class HashTable<K, V>(private val size: Int) {
     private val hashTable: Array<KeyValue<K, V>?> = arrayOfNulls<KeyValue<K, V>>(size)
 
+
+    // return an index from given key after performing mathematical operation
     private fun hash(key: K): Int {
         print(key)
         print("  ${key.hashCode()}    ")
@@ -47,12 +44,9 @@ class HashTable<K, V>(private val size: Int) {
         return (key.hashCode() % hashTable.size).absoluteValue
     }
 
-    fun checkType(key : K): Any {
-        val type = (key!!::class).toString()
-        return type
-    }
 
-    fun removedKey(key: K): Any? {
+    // add the corresponding free space on deleted index as its datatype
+    private fun removedKey(key: K): Any? {
         val type = (key!!::class).toString()
         return when (type){
             "class java.lang.String (Kotlin reflection is not available)" -> "empty"
@@ -61,6 +55,9 @@ class HashTable<K, V>(private val size: Int) {
         }
     }
 
+
+    // put elements in table on there hash index,
+    // if already occupied then find next empty space using linear probing.
     fun put(key: K, value: V) {
         print("put ")
         val index = hash(key)
@@ -86,6 +83,10 @@ class HashTable<K, V>(private val size: Int) {
         }
     }
 
+
+    // search element and return its value using hash function,
+    // if value not found on index then find it in next indexs till,
+    // value is found or null is detected.
     fun search(key: K) {
         val index = hash(key)
         if (hashTable[index] == null) {
@@ -106,6 +107,9 @@ class HashTable<K, V>(private val size: Int) {
         }
     }
 
+
+    // remove value from index using key,
+    // and put empty or 0 on that free space for further use.
     fun remove(key: K) {
         print("remove ")
         val index = hash(key)

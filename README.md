@@ -19,6 +19,8 @@ with there explanation and approaches. Adding problems as we learn through contr
     - LinkedList [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures/linkedlist)
     - Stack [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures/stack)
     - Queue [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures/queue)
+    - Hash Table [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures/hashtable)
+    - Tree [>](https://github.com/navneet851/kotlin-data-structures-and-algorithms/tree/master/src/data_structures/tree)
 
 
 

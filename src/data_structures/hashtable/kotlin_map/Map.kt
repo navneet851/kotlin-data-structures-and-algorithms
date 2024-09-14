@@ -8,7 +8,7 @@ fun main(){
     map.print()
 }
 class Map {
-    var map = mutableMapOf<String, Int>("nav" to  3)
+    private var map = mutableMapOf<String, Int>("nav" to  3)
 
 
     fun add(key : String, value : Int){
