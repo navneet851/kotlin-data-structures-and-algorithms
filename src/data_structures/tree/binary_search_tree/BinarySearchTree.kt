@@ -10,6 +10,10 @@ fun main(){
     tree.insert(16)
     tree.insert(1)
     tree.preOrder(tree.root)
+    println()
+    tree.inOrder(tree.root)
+    println()
+    tree.postOrder(tree.root)
 }
 class BinarySearchTree {
     var root : Node? = null
@@ -44,6 +48,31 @@ class BinarySearchTree {
             print("${node.value} ")
             preOrder(node.left)
             preOrder(node.right)
+        }
+        else{
+            return
+        }
+    }
+
+    fun inOrder(node : Node?){
+        if (node != null){
+            preOrder(node.left)
+            print("${node.value} ")
+            preOrder(node.right)
+        }
+        else{
+            return
+        }
+    }
+
+    fun postOrder(node : Node?){
+        if (node != null){
+            preOrder(node.left)
+            preOrder(node.right)
+            print("${node.value} ")
+        }
+        else{
+            return
         }
     }
 
