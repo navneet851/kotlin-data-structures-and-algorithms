@@ -1,7 +1,7 @@
-package src.data_structures.tree.binary_search_tree
+package src.data_structures.tree
 
-import src.data_structures.tree.Node
-
+// In Binary Search Tree, the left child of a node contains a value less than the node and the right child
+// of a node contains a value greater than the node.
 fun main(){
     val tree = BinarySearchTree()
     tree.insert(10)
@@ -9,11 +9,13 @@ fun main(){
     tree.insert(15)
     tree.insert(16)
     tree.insert(1)
+    tree.search(15)
     tree.preOrder(tree.root)
-    println()
+    println("-> PreOrder")
     tree.inOrder(tree.root)
-    println()
+    println("-> InOrder")
     tree.postOrder(tree.root)
+    println("-> PostOrder")
 }
 class BinarySearchTree {
     var root : Node? = null
@@ -39,6 +41,22 @@ class BinarySearchTree {
                 }
             }
         }else return
+    }
+
+    //to check value is present in tree or not
+    fun search(value: Int){
+        var node = root
+        while (node != null){
+            if (node.value == value){
+                println("Value found")
+                return
+            }else if (value < node.value){
+                node = node.left
+            }else{
+                node = node.right
+            }
+        }
+        println("Value not found")
     }
 
 
