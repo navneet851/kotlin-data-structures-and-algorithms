@@ -20,8 +20,11 @@ fun main(){
 class LinearQueue {
     private var queue : Array<Int> = emptyArray()
 
+    //queue front
+    fun front() = queue[0]
+
     //check if empty
-    fun isEmpty() = queue.size == 0
+    fun isEmpty() = queue.isEmpty()
 
     // return top element
     fun peek() = if (isEmpty()) 0 else queue[queue.size - 1]
@@ -31,7 +34,7 @@ class LinearQueue {
         queue += value
     }
 
-    // delete from end
+    // delete from front
     fun dequeue(){
         if (isEmpty()){
             println("Nothing to delete")
